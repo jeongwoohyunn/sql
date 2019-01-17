@@ -51,5 +51,22 @@ select a.first_name,b.salary
 				where to_date = '9999-01-01')
 order by b.salary desc;
     
+-----
+-- any,all 보충
 
+
+select emp_no
+	from salaries where to_date = '9999-01-01' and salary>50000;
+
+select concat(first_name,' ',last_name),salary
+	from employees a, salaries b
+    where a.emp_no = b.emp_no
+    and b.to_date = '9999-01-01'
+    and a.emp_no = any(select emp_no
+	from salaries where to_date = '9999-01-01' and salary>50000);
     
+select concat(first_name,' ',last_name),salary
+	from employees a ,(select emp_no ,salary from salaries where to_date = '9999-01-01' and salary>50000) b
+    where a.emp_no = b.emp_no;
+    
+-- from 절에 넣는것과 where 절에 넣는 것의 차이
