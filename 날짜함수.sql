@@ -18,8 +18,8 @@ select first_name,
 	concat(
 	cast(period_diff(date_format(curdate(),'%Y%m'),
     date_format(hire_date,'%Y%m'))as char),'개월')
-    from employees;
-    
+    from employees; 
+     
 -- 각 사원 입사 후 6개월 뒤에 정규직으로 발령이 된다.
 -- 발령날은 언제?
 -- month,week,year,day
